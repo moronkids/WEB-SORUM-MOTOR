@@ -1,0 +1,58 @@
+<?php
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
+
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+Route::resource('Motors', 'MotorController');
+// ------ Motor Kalcer ------
+Route::get('/', function () {
+    return view('web_extends/index');
+})->name('index');
+
+Route::get('/shop', 'MotorController@index')->name('shop');
+Route::get('/shop/create', 'MotorController@create')->name('create.shop');
+
+Route::get('/about', function () {
+    return view('web_extends/about');
+})->name('about');
+
+Auth::routes();
+
+// --------------------------
+
+Route::get('/home', 'HomeController@index')->name('home');
+$this->get('login', 'Auth\LoginController@showLoginForm')->name('login');
+$this->post('login', 'Auth\LoginController@login');
+$this->post('logout', 'Auth\LoginController@logout')->name('logout');
+
+// Registration Routes...
+$this->get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+$this->post('register', 'Auth\RegisterController@register');
+
+// Password Reset Routes...
+$this->get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+$this->post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+$this->get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+$this->post('password/reset', 'Auth\ResetPasswordController@reset');
+
+// Password Change
+Route::get('/changePassword','HomeController@showChangePasswordForm');
+Route::post('/changePassword','HomeController@changePassword')->name('changePassword');
+
+// routes untuk mengganti template email text
+Route::get('/changePassword','HomeController@showChangePasswordForm');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
