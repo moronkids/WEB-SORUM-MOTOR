@@ -27,7 +27,7 @@ class MotorController extends Controller
         'tipe_motor'=> $request->get('tipe_motor')
       ]);
       $motors->save();
-      return redirect('/shop')->with('success', 'Stock has been added');
+      return redirect('/Motors')->with('success', 'Stock has been added');
     }
     public function edit($id)
     {
@@ -49,14 +49,14 @@ class MotorController extends Controller
           $motors->tipe_motor = $request->get('tipe_motor');
           $motors->save();
 
-          return redirect('/shop')->with('success', 'Stock has been updated');
+          return redirect('/Motors')->with('success', 'Stock has been updated');
     }
     public function destroy($id)
     {
        $motors = Motor::find($id);
        $motors->delete();
 
-       return redirect('/shop')->with('success', 'Stock has been deleted Successfully');
+       return redirect('/Motors')->with('success', 'Stock has been deleted Successfully');
     }
 
 

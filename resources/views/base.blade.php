@@ -40,7 +40,7 @@ use Illuminate\Support\Facades\Auth;
             <a href="{{ route('login')}}"><b>LOGIN</b></a>
             <?php } ?>
             <br>
-            <a href="{{ route('shop')}}"><b>SHOP</b></a>
+            <a href="{{ route('Motors.index')}}"><b>SHOP</b></a>
             <br>
             <a href="{{ route('about')}}"><b>ABOUT</b></a>
           </div>
