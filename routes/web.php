@@ -20,8 +20,8 @@ Route::get('/', function () {
     return view('web_extends/index');
 })->name('index');
 
-Route::get('/shop', 'MotorController@index')->name('shop');
-Route::get('/shop/create', 'MotorController@create')->name('create.shop');
+// Route::get('/shop', 'MotorController@index')->name('shop');
+// Route::get('/shop/create', 'MotorController@create')->name('create.shop');
 
 Route::get('/about', function () {
     return view('web_extends/about');
