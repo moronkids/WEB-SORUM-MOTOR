@@ -6,11 +6,10 @@
     margin-top: 40px;
   }
 </style>
-<div class="card uper">
-  <div class="card-header">
-    Edit Share
-  </div>
-  <div class="card-body">
+<div class="container">
+<div class="jumbotron">
+
+<h1>Update Motor</h1>
     @if ($errors->any())
       <div class="alert alert-danger">
         <ul>

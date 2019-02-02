@@ -21,7 +21,8 @@
 
       @foreach($row as $z)
       <td>
-
+        <img class="card-img-top" width="200px"; src="{{url('storage/'.$z->filename)}}" alt="{{$z->filename}}">
+        <div class="card-body">
         <p ><b>Brand Motor :</b><br>{{$z->brand_motor}}</p>
         <p ><b>Nama Motor :</b><br>{{$z->nama_motor}}</p>
         <p ><b>Tipe Motor :</b><br>{{$z->tipe_motor}}</p>

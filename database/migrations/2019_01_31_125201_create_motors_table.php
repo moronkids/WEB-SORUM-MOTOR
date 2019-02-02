@@ -18,8 +18,12 @@ class CreateMotorsTable extends Migration
             $table->string('brand_motor');
             $table->string('tipe_motor');
             $table->string('nama_motor');
-            $table->string('harga_motor');
             $table->timestamps();
+            $table->string('filename')->nullable();
+            $table->string('mime')->nullable();
+            $table->string('original_filename')->nullable();
+            $table->string('dimensions');
+            $table->string('path');
         });
     }
 

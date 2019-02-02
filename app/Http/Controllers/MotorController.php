@@ -1,7 +1,10 @@
 <?php
-
 namespace App\Http\Controllers;
 use App\Motor;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
+
+
 use Illuminate\Http\Request;
 
 class MotorController extends Controller
@@ -21,11 +24,19 @@ class MotorController extends Controller
         'brand_motor'=> 'required',
         'tipe_motor' => 'required'
       ]);
+      $gmabarmotor = $request->file('gambarmotor');
+      $extension = $gmabarmotor->getClientOriginalExtension();
+      Storage::disk('public')->put($gmabarmotor->getFilename().'.'.$extension,  File::get($gmabarmotor));
+
       $motors = new Motor([
+
         'nama_motor' => $request->get('nama_motor'),
         'brand_motor'=> $request->get('brand_motor'),
         'tipe_motor'=> $request->get('tipe_motor')
       ]);
+      $motors->mime = $gmabarmotor->getClientMimeType();
+    $motors->original_filename = $gmabarmotor->getClientOriginalName();
+    $motors->filename = $gmabarmotor->getFilename().'.'.$extension;
       $motors->save();
       return redirect('/Motors')->with('success', 'Stock has been added');
     }
