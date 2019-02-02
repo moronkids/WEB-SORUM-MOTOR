@@ -34,6 +34,10 @@
           <label for="quantity">Tipe Motor</label>
           <input type="text" class="form-control" name="tipe_motor" value={{ $motors->tipe_motor}} />
         </div>
+        <div class="form-group">
+        <label for="author">Cover:</label>
+        <input type="file" class="form-control" name="gambarmotor"/>
+        </div>
         <button type="submit" class="btn btn-primary">Update</button>
       </form>
   </div>
