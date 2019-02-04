@@ -25,15 +25,4 @@ class HomeController extends Controller
     {
         return view('home');
     }
-    public function store(Request $request)
-    {
-        //Validate
-        $request->validate([
-            'title' => 'required|min:3',
-            'description' => 'required',
-        ]);
-
-        $task = Task::create(['title' => $request->title,'description' => $request->description]);
-        return redirect('/tasks/'.$task->id);
-    }
 }

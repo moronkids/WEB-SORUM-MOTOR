@@ -177,6 +177,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         Appzcoder\CrudGenerator\CrudGeneratorServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
+        'Intervention\Image\ImageServiceProvider',
 
     ],
 
@@ -228,6 +229,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Form'   => Collective\Html\FormFacade::class,
         'HTML'   => Collective\Html\HtmlFacade::class,
+        'Image' => 'Intervention\Image\Facades\Image',
 
     ],
 

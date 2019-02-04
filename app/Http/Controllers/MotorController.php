@@ -12,7 +12,7 @@ class MotorController extends Controller
     // index
     public function __construct()
     {
-        $this->dimensions = ['300'];
+        $this->dimensions = ['250'];
     }
     public function index(){
       $Motor = Motor::all();
@@ -37,7 +37,7 @@ class MotorController extends Controller
       // $extension = $gmabarmotor->getClientOriginalExtension();
       // Storage::disk('public')->put($gmabarmotor->getFilename().'.'.$extension,  File::get($gmabarmotor));
       // ---------------------------------------------------------------------------
-        $originalImage= $request->file('gambarmotor2');
+        $originalImage= $request->file('gambarmotor');
         $thumbnailImage = Image::make($originalImage);
         $thumbnailPath = public_path().'/thumbnail/';
         $originalPath = public_path().'/images/';
@@ -89,17 +89,31 @@ class MotorController extends Controller
         'brand_motor'=> 'required',
         'tipe_motor' => 'required'
       ]);
-      $gmabarmotor = $request->file('gambarmotor');
-      $extension = $gmabarmotor->getClientOriginalExtension();
-      Storage::disk('public')->put($gmabarmotor->getFilename().'.'.$extension,  File::get($gmabarmotor));
+      $originalImage= $request->file('gambarmotor');
+      $thumbnailImage = Image::make($originalImage);
+      $thumbnailPath = public_path().'/thumbnail/';
+      $originalPath = public_path().'/images/';
+      $thumbnailImage->save($originalPath.time().$originalImage->getClientOriginalName());
+      foreach ($this->dimensions as $row) {
+          //MEMBUAT CANVAS IMAGE SEBESAR DIMENSI YANG ADA DI DALAM ARRAY
+          $canvas = Image::canvas($row, $row);
+          //RESIZE IMAGE SESUAI DIMENSI YANG ADA DIDALAM ARRAY
+          //DENGAN MEMPERTAHANKAN RATIO
+          $resizeImage  = Image::make($originalImage)->resize($row, $row, function($constraint) {
+              $constraint->aspectRatio();
+          });
+
+          //MEMASUKAN IMAGE YANG TELAH DIRESIZE KE DALAM CANVAS
+          $canvas->insert($resizeImage, 'center');
+          //SIMPAN IMAGE KE DALAM MASING-MASING FOLDER (DIMENSI)
+          $canvas->save($thumbnailPath.time().$originalImage->getClientOriginalName());
+      }
 
           $motors = Motor::find($id);
           $motors->nama_motor = $request->get('nama_motor');
           $motors->brand_motor = $request->get('brand_motor');
           $motors->tipe_motor = $request->get('tipe_motor');
-          $motors->mime = $gmabarmotor->getClientMimeType();
-          $motors->original_filename = $gmabarmotor->getClientOriginalName();
-          $motors->filename = $gmabarmotor->getFilename().'.'.$extension;
+          $motors->filename=time().$originalImage->getClientOriginalName();
           $motors->save();
 
           return redirect('/Motors')->with('success', 'Stock has been updated');
