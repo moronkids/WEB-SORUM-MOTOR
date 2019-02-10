@@ -54,7 +54,7 @@ return [
             'root'   => public_path() . '/uploads',
             'url' => env('APP_URL').'/public',
             'visi bility' => 'public',
-         ]
+         ],
 
         's3' => [
             'driver' => 's3',
