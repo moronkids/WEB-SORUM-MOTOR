@@ -21,9 +21,14 @@
 
       @foreach($row as $z)
       <td>
+<<<<<<< HEAD
         <picture>
           <img class="img-rounded" src="{{asset('/thumbnail/'.$z->filename)}}" >
         </picture>
+=======
+        <img class="card-img-top" width="200px"; src="{{url('thumbnail/'.$z->filename)}}" alt="{{$z->filename}}">
+        <div class="card-body">
+>>>>>>> 11747a548266f2b70f510cda23ec9f4cd4550b44
         <p ><b>Brand Motor :</b><br>{{$z->brand_motor}}</p>
         <p ><b>Nama Motor :</b><br>{{$z->nama_motor}}</p>
         <p ><b>Tipe Motor :</b><br>{{$z->tipe_motor}}</p>

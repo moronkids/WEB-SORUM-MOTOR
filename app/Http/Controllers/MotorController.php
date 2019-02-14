@@ -41,6 +41,15 @@ class MotorController extends Controller
         $thumbnailImage = Image::make($originalImage);
         $thumbnailPath = public_path().'/thumbnail/';
         $originalPath = public_path().'/images/';
+        if (!File::isDirectory($thumbnailPath)) {
+            //MAKA FOLDER TERSEBUT AKAN DIBUAT
+            File::makeDirectory($thumbnailPath);
+        }
+        if (!File::isDirectory($originalPath)) {
+            //MAKA FOLDER TERSEBUT AKAN DIBUAT
+            File::makeDirectory($originalPath);
+        }
+
         $thumbnailImage->save($originalPath.time().$originalImage->getClientOriginalName());
         foreach ($this->dimensions as $row) {
             //MEMBUAT CANVAS IMAGE SEBESAR DIMENSI YANG ADA DI DALAM ARRAY

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddGambarToColumn extends Migration
+class AddHapusTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,8 @@ class AddGambarToColumn extends Migration
     public function up()
     {
         Schema::table('motors', function (Blueprint $table) {
-
+          $table->string('dimensions')->nullable();
+          $table->string('path')->nullable();
         });
     }
 
@@ -26,7 +27,7 @@ class AddGambarToColumn extends Migration
     public function down()
     {
         Schema::table('motors', function (Blueprint $table) {
-            //
+
         });
     }
 }
